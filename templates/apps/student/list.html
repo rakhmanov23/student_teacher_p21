@@ -1,0 +1,208 @@
+{% extends 'apps/base.html' %}
+
+{% block title %}
+    Students list
+{% endblock %}
+
+{% block main_content %}
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Students</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Students</li>
+                    </ul>
+                </div>
+                <div class="col-auto text-right float-right ml-auto">
+                    <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+                    <a href="{% url 'student_add_page' %}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card card-table">
+                    <div class="card-body">
+
+                        <div class="table-responsive">
+                            <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="dataTables_length" id="DataTables_Table_0_length"><label>Show
+                                            <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0"
+                                                    class="custom-select custom-select-sm form-control form-control-sm">
+                                                <option value="10">10</option>
+                                                <option value="25">25</option>
+                                                <option value="50">50</option>
+                                                <option value="100">100</option>
+                                            </select> entries</label></div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-hover table-center mb-0 datatable dataTable no-footer"
+                                               id="DataTables_Table_0" role="grid"
+                                               aria-describedby="DataTables_Table_0_info">
+                                            <thead>
+                                            <tr role="row">
+                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0"
+                                                    rowspan="1" colspan="1" aria-sort="ascending"
+                                                    aria-label="ID: activate to sort column descending"
+                                                    style="width: 60.1562px;">ID
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Name: activate to sort column ascending"
+                                                    style="width: 205.828px;">Name
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Class: activate to sort column ascending"
+                                                    style="width: 54.1094px;">Class
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="DOB: activate to sort column ascending"
+                                                    style="width: 93.8438px;">DOB
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Parent Name: activate to sort column ascending"
+                                                    style="width: 126.094px;">Parent Name
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Mobile Number: activate to sort column ascending"
+                                                    style="width: 141.656px;">Mobile Number
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Address: activate to sort column ascending"
+                                                    style="width: 378.281px;">Address
+                                                </th>
+                                                <th class="text-right sorting" tabindex="0"
+                                                    aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                                                    aria-label="Action: activate to sort column ascending"
+                                                    style="width: 86.0312px;">Action
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for student in students %}
+                                                <tr role="row" class="odd">
+                                                    <td class="sorting_1">PRE1234</td>
+                                                    <td>
+                                                        <h2 class="table-avatar">
+                                                            <a href="{% url 'student_detail_page' student.pk %}"
+                                                               class="avatar avatar-sm mr-2"><img
+                                                                    class="avatar-img rounded-circle"
+                                                                    src="{{ student.image.url }}"
+                                                                    alt="User Image"></a>
+                                                            <a href="{% url 'student_detail_page' student.pk %}">{{ student.get_full_name }}</a>
+                                                        </h2>
+                                                    </td>
+                                                    <td>10 B</td>
+                                                    <td>26 Apr 1994</td>
+                                                    <td>Stephen Marley</td>
+                                                    <td>077 3499 9959</td>
+                                                    <td>86 Lamphey Road, Thelnetham</td>
+                                                    <td class="text-right">
+                                                        <div class="actions">
+                                                            <a href="{% url 'student_edit_page' student.pk %}"
+                                                               class="btn btn-sm bg-success-light mr-2">
+                                                                <i class="fas fa-pen"></i>
+                                                            </a>
+                                                            <a href="{% url 'student_delete_page' student.pk %}"
+                                                               class="btn btn-sm bg-danger-light">
+                                                                <i class="fas fa-trash"></i>
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-5">
+                                        <div class="dataTables_info" id="DataTables_Table_0_info" role="status"
+                                             aria-live="polite">Showing {{ page_obj.start_index }}
+                                            to {{ page_obj.end_index }} of
+                                            {{ page_obj.paginator.count }} entries
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-7">
+                                        <div class="dataTables_paginate paging_simple_numbers"
+                                             id="DataTables_Table_0_paginate">
+                                            <ul class="pagination">
+
+                                                {% if page_obj.has_previous %}
+                                                    <li class="paginate_button page-item previous"
+                                                        id="DataTables_Table_0_previous">
+                                                        <a href="?page={{ page_obj.previous_page_number }}"
+                                                           aria-controls="DataTables_Table_0" data-dt-idx="0"
+                                                           tabindex="0" class="page-link">
+                                                            Previous
+                                                        </a>
+                                                    </li>
+                                                {% endif %}
+
+                                                {% if page_obj.has_previous %}
+                                                    <li class="paginate_button page-item ">
+                                                        <a href="?page={{ page_obj.previous_page_number }}"
+                                                           aria-controls="DataTables_Table_0" data-dt-idx="2"
+                                                           tabindex="0" class="page-link">
+                                                            {{ page_obj.number|add:-1 }}
+                                                        </a>
+                                                    </li>
+                                                {% endif %}
+                                                <li class="paginate_button page-item active disabled">
+                                                    <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1"
+                                                       tabindex="0" class="page-link">
+                                                        {{ page_obj.number }}
+                                                    </a>
+                                                </li>
+                                                {% if page_obj.has_next %}
+                                                    <li class="paginate_button page-item ">
+                                                        <a href="?page={{ page_obj.next_page_number }}"
+                                                           aria-controls="DataTables_Table_0" data-dt-idx="2"
+                                                           tabindex="0" class="page-link">
+                                                            {{ page_obj.number|add:1 }}
+                                                        </a>
+                                                    </li>
+                                                {% endif %}
+
+                                                {% if page_obj.has_next %}
+                                                    <li class="paginate_button page-item next"
+                                                        id="DataTables_Table_0_next">
+                                                        <a href="?page={{ page_obj.next_page_number }}"
+                                                           aria-controls="DataTables_Table_0" data-dt-idx="3"
+                                                           tabindex="0" class="page-link">
+                                                            Next
+                                                        </a>
+                                                    </li>
+                                                {% endif %}
+
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
